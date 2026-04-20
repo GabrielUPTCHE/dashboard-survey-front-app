@@ -36,6 +36,12 @@ export default function Usuarios() {
   };
 
   const handleCreate = async () => {
+    const requiredFields = ['numberIdentification', 'name', 'lastName', 'email', 'password'];
+    const missing = requiredFields.filter((f) => !form[f].trim());
+    if (missing.length > 0) {
+      setError('Todos los campos son obligatorios');
+      return;
+    }
     setSaving(true);
     setError('');
     try {
@@ -126,24 +132,24 @@ export default function Usuarios() {
             <div className="grid grid-cols-2 gap-3">
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-semibold text-on-surface-variant">Nombre</label>
-                <input name="name" value={form.name} onChange={handleChange} placeholder="Juan" className={inputClass} />
+                <input name="name" value={form.name} onChange={handleChange} placeholder="Juan" className={inputClass} required />
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-semibold text-on-surface-variant">Apellido</label>
-                <input name="lastName" value={form.lastName} onChange={handleChange} placeholder="García" className={inputClass} />
+                <input name="lastName" value={form.lastName} onChange={handleChange} placeholder="García" className={inputClass} required />
               </div>
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold text-on-surface-variant">N° Identificación</label>
-              <input name="numberIdentification" value={form.numberIdentification} onChange={handleChange} placeholder="1234567890" className={inputClass} />
+              <input name="numberIdentification" value={form.numberIdentification} onChange={handleChange} placeholder="1234567890" className={inputClass} required />
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold text-on-surface-variant">Correo electrónico</label>
-              <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="usuario@censo.gov.co" className={inputClass} />
+              <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="usuario@censo.gov.co" className={inputClass} required />
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold text-on-surface-variant">Contraseña</label>
-              <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="••••••••" className={inputClass} />
+              <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="••••••••" className={inputClass} required />
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-sm font-semibold text-on-surface-variant">Rol</label>

@@ -82,7 +82,9 @@ export default function AsignacionRutas() {
                   fecha: form.fecha,
                   horaInicio: form.horaInicio,
                   horaFin: form.horaFin,
-                  estado: form.encuestadorId ? 'Pendiente' : 'Sin asignar',
+                  estado: form.encuestadorId
+                    ? (modal.ruta.estado === 'Sin asignar' ? 'Pendiente' : modal.ruta.estado)
+                    : 'Sin asignar',
                 }
               : r
           )
@@ -100,7 +102,7 @@ export default function AsignacionRutas() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center gap-3">
         <h1 className="text-2xl font-bold text-on-surface font-headline flex-1">Asignación de Rutas</h1>
-        <Button onClick={openNueva}>
+        <Button disabled title="Disponible cuando el backend exponga POST /api/turnos con búsqueda de sujeto">
           <span className="material-symbols-outlined text-base">add</span>
           Nueva ruta
         </Button>
