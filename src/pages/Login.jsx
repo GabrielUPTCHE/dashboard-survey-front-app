@@ -5,7 +5,7 @@ import { authService } from '../services/auth.service.js';
 
 export default function Login() {
   const navigate = useNavigate();
-  const { isAuthenticated, login } = useAuth();
+  const { isAuthenticated, login, isLoading } = useAuth();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -13,6 +13,12 @@ export default function Login() {
   useEffect(() => {
     if (isAuthenticated) navigate('/', { replace: true });
   }, [isAuthenticated, navigate]);
+
+  if (isLoading) return (
+    <div className="min-h-screen flex items-center justify-center bg-surface">
+      <span className="material-symbols-outlined animate-spin text-primary text-4xl">sync</span>
+    </div>
+  );
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));

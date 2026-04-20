@@ -22,7 +22,8 @@ function KpiCard({ label, value, sub, borderColor }) {
 
 function BarChart({ data }) {
   const max = Math.max(...data.map((d) => d.cantidad));
-  const today = new Date().toLocaleDateString('es-CO', { weekday: 'short' }).replace('.', '');
+  const DAY_NAMES = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+  const today = DAY_NAMES[new Date().getDay()];
   return (
     <div className="bg-surface-container rounded-xl border border-surface-container-highest p-5">
       <h3 className="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-4">Encuestas por día</h3>
@@ -56,7 +57,8 @@ function DonutChart({ data }) {
   const gradient = `conic-gradient(
     #10b981 0% ${completadasPct}%,
     #f59e0b ${completadasPct}% ${completadasPct + pendientesPct}%,
-    #ef4444 ${completadasPct + pendientesPct}% 100%
+    #ef4444 ${completadasPct + pendientesPct}% ${completadasPct + pendientesPct + sinAsignarPct}%,
+    #e2e8f0 ${completadasPct + pendientesPct + sinAsignarPct}% 100%
   )`;
 
   return (
