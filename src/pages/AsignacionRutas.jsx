@@ -26,6 +26,7 @@ export default function AsignacionRutas() {
   const [modal, setModal] = useState(null); // null | { ruta } | 'nueva'
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
+  const [modalError, setModalError] = useState('');
 
   const rutasFiltradas = rutas.filter((r) => {
     if (fechaFiltro && r.fecha !== fechaFiltro) return false;

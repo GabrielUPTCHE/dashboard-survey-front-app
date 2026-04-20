@@ -32,6 +32,7 @@ export default function Login() {
     try {
       // POST /login → { message, email }
       const data = await authService.login({ email: form.email, password: form.password });
+      // role is hard-coded until the backend /login response includes it
       login({ email: data.email, role: 'ADMIN' });
     } catch (err) {
       setError(err.message || 'Credenciales incorrectas');

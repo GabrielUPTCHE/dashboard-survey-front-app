@@ -42,6 +42,10 @@ export default function Usuarios() {
       setError('Todos los campos son obligatorios');
       return;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      setError('El correo electrónico no es válido');
+      return;
+    }
     setSaving(true);
     setError('');
     try {

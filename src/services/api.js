@@ -27,7 +27,9 @@ export async function apiFetch(endpoint, options = {}) {
         } catch {
           if (text) message = text;
         }
-      } catch (_) {}
+      } catch {
+        // body could not be read — keep the HTTP status message
+      }
       throw new Error(message);
     }
 
