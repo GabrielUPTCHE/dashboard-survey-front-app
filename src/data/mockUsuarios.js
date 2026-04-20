@@ -1,5 +1,8 @@
 // Mock data para la pantalla de Gestión de Usuarios.
+// La lista inicial se sirve desde aquí hasta que el backend exponga GET /api/users.
+
 // TODO: GET /api/users → UserEntity[]
+// UserEntity: { numberIdentification, name, lastName, email, state, role: { id, name } }
 
 export const mockUsuarios = [
   {
